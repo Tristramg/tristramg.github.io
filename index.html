@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<!-- Please do not judge me on my HTML/JS/CSS skills ;) -->
+
+<html>
+<head>
+<meta charset=utf-8 />
+<title>Tristram Gräbener</title>
+<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+<script src='https://api.tiles.mapbox.com/mapbox.js/v2.2.1/mapbox.js'></script>
+<script src='https://code.jquery.com/jquery-2.1.4.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.6.7/jquery.fullPage.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/showdown/1.2.1/showdown.min.js'></script>
+<link href='https://api.tiles.mapbox.com/mapbox.js/v2.2.1/mapbox.css' rel='stylesheet' />
+
+
+<style>
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,700);
+  body {
+    margin:0;
+    padding:0; 
+    font-family: 'Open Sans', sans-serif;
+  }
+
+  #map {
+    position: absolute;
+    height: 100%;
+    width: 40%;
+  }
+
+  #fullpage {
+    left: 40%;
+    width: 40%;
+  }
+
+  #cv {
+    float: right;
+    left: 80%;
+    width: 20%;
+  }
+
+  #wrapper {
+    position: absolute;
+    height: 10;
+    width: 100%;
+  }
+
+  .section {
+    padding: 20px;
+    padding-left: 40px;
+  }
+</style>
+</head>
+<body>
+<div id='wrapper'>
+  <div id='map'></div>
+  <div id='cv'>
+  </div>
+
+  <div id='fullpage'>
+      <div class='section'
+          data-cv=''
+          >
+#Hallo!
+
+##I’m Tristram Gräbener, and this is my CV
+
+Press `[SPACE]`, `[↓]` or scroll to continue
+
+More about me:
+
+* [Github](https://github.com/tristramg/)
+* [Twitter](https://twitter.com/tristramg/)
+* [LinkedIn](https://www.linkedin.com/profile/view?id=8049012)
+      </div>
+
+      <div class='section'
+        data-lon='-80.742269'
+        data-lat='-1.345819'
+        data-zoom='4'
+        data-cv='
+## Languages
+* Spanish: fluent'
+        >
+#Birth
+
+##Ecuador
+
+**1984** (31 years old)
+
+Spanish is the language we speak at home
+      </div>
+
+      <div class='section'
+        data-lon='9.237527'
+        data-lat='48.746823'
+        data-zoom='4'
+        data-cv='
+## Languages
+* Spanish: fluent
+* German: fluent'
+        >
+#Kindergarten
+
+##Stuttgart
+
+**1984 — 1989**
+
+Until 2000, I spent a month every summer in Stuttgart.
+
+Do not worry, I have no _swäbisch_ accent.
+
+
+      </div>
+
+      <div class='section'
+        data-lon='2.4117'
+        data-lat='6.3595'
+        data-zoom='4'
+        data-cv='
+## Languages
+* Spanish: fluent
+* German: fluent
+* French: fluent'
+        >
+#School
+
+##Cotonou (Bénin)
+
+**1989 – 1993**
+
+Learning French at 5 is way easier.
+      </div>
+
+      <div class='section'
+        data-lon='2.102712'
+        data-lat='13.523439'
+        data-zoom='4'
+        data-anchor='niger'
+        >
+#School
+
+##Niamey (Niger)
+
+**1994 – 1997**
+
+No real professionnal interest (excepted maybe camel riding).
+
+      </div>
+
+      <div class='section'
+        data-lon='47.558248'
+        data-lat='-18.887507'
+        data-zoom='4'
+        data-anchor='madagascar'
+        >
+#High School
+
+##Antananarivo (Madagascar)
+
+**1997 — 2002**
+
+_Bacalauréat Scientifique_: A-level in Science with honnors (_mention bien_).
+      </div>
+
+      <div class='section'
+        data-lon='2.390725'
+        data-lat='48.856219'
+        data-zoom='4'
+        data-anchor='prepa'
+        >
+#Preparatory school
+
+##Paris — Lycée Charlemagne
+
+**2002 — 2003**
+
+Mathematics and Physics
+      </div>
+
+      <div class='section'
+        data-lon='-1.520415'
+        data-lat='47.282329'
+        data-zoom='4'
+        data-anchor='nantes'
+        >
+#Engineering school
+
+##École des Mines de Nantes
+
+**2003 — 2007**
+
+Major in Operation Research
+      </div>
+
+      <div class='section'
+        data-lon='12.583993'
+        data-lat='55.67955'
+        data-zoom='4'
+        data-anchor='copenhagen'
+        data-cv='
+## Routing experience
+
+* [Ange Optimization](http://www.ange.dk)
+
+## Skills
+
+* C++
+
+## Languages
+* Spanish: fluent
+* German: fluent
+* French: fluent
+* English: efficient in daily use (professionnal and private)'
+        >
+#Master Thesis
+
+##[Ange Optimization](http://www.ange.dk) Køpenhavn
+
+**2007**
+
+Building a tool to optimize container vessels routes.
+
+My first actual experience with routing, and C++.
+      </div>
+      <div class='section'
+        data-lon='1.432417'
+        data-lat='43.605248'
+        data-zoom='4'
+        data-cv='
+## Routing experience
+
+* [Ange Optimization](http://www.ange.dk)
+* [Mumoro](https://github.com/Tristramg/mumoro/)
+
+## Skills
+
+* **C++**
+* Python
+* Spatial databases (PostGis)
+
+## Languages
+* Spanish: fluent
+* German: fluent
+* French: fluent
+* English: efficient in daily use (professionnal and private)'
+        >
+#PhD in Computer Science
+
+##Université de Toulouse
+
+**2007 — 2010**
+
+Multimodal and multicriteria routing in public transit.
+
+[Implementation](https://github.com/Tristramg/mumoro/) in C++.
+
+To fund my thesis, I also worked on a routing algorithm for firetrucks considering traffic conditions, turn restrictions and the possibility to bend some rules.
+
+* [Some citations](https://scholar.google.com/citations?user=seR9E7kAAAAJ&hl=en)
+* [The Thesis](http://www.irit.fr/publis/VORTEX/Grabener_These_2010-11-15.pdf) (in French)
+      </div>
+
+      <div class='section'
+        data-lon='2.391768'
+        data-lat='48.829716'
+        data-zoom='11'
+        data-cv='
+## Routing experience
+
+* [Ange Optimization](http://www.ange.dk)
+* [Mumoro](https://github.com/Tristramg/mumoro/)
+* [Navitia](https://github.com/canalTP/navitia)
+
+## Skills
+
+* _**C++**_
+* Python
+* Spatial databases (PostGis)
+
+## Languages
+* Spanish: fluent
+* German: fluent
+* French: fluent
+* English: efficient in daily use (professionnal and private)'
+        >
+#Canal TP
+
+##Paris
+
+**2010 — 2013**
+
+* Lead developper for a full rewrite in C++ of their public transit routing engine [Navitia](https://github.com/canalTP/navitia)
+* A private blog post about the history of [routes computation](http://blog.tristramg.eu/short-history-of-routes-computation.html)
+      </div>
+
+      <div class='section'
+        data-lon='2.337195'
+        data-lat='48.875343'
+        data-zoom='11'
+        data-cv='
+## Routing experience
+
+* [Ange Optimization](http://www.ange.dk)
+* [Mumoro](https://github.com/Tristramg/mumoro/)
+* [Navitia](https://github.com/canalTP/navitia)
+* [CapitaineTrain](https://www.capitainetrain.com)
+
+## Skills
+
+* _**C++**_
+* Python
+* Ruby
+* Spatial databases (PostGis)
+* Mapbox’s stack
+
+## Languages
+* Spanish: fluent
+* German: fluent
+* French: fluent
+* English: efficient in daily use (professionnal and private)'
+        >
+#Capitaine Train
+
+##Paris
+
+**2013 — present**
+
+* Main developper of the routing engine in C++
+  * Allows to compute train routes accross Europe
+* Designing a railway map of Europe
+      </div>
+
+  </div>
+</div>
+
+<script>
+
+
+
+L.mapbox.accessToken = 'pk.eyJ1IjoidHJpc3RyYW1nIiwiYSI6IjU0NGQxM2U1NWE4NzRlOTMzMTg2ZTI3NTg1MTFhMzJiIn0.pG_d_9qYoqd9oYVlLroJyw';
+var map = L.mapbox.map('map', 'tristramg.mp9oc479')
+  .setView([0, 0], 2);
+
+map.scrollWheelZoom.disable();
+
+
+function nextSlide(index, nextIndex, direction) {
+  show_markers(index - 1, nextIndex - 1);
+}
+
+var markers = []
+var icon = L.mapbox.marker.icon({
+    'marker-color': '#b96'
+    });
+
+var hilight = L.mapbox.marker.icon({
+    'marker-size': 'large',
+    'marker-color': '#fa0'
+    });
+
+function show_markers(previous, index) {
+  var marker = markers[index];
+  if (marker) {
+      marker.setIcon(hilight)
+      marker.setZIndexOffset(1000);
+      marker.addTo(map);
+      map.setView(marker.getLatLng(), marker.zoom, { pan: {animate: true, duration: 1}, zoom:{animate: true}});
+
+      $("#cv").html(marker.cv);
+  }
+
+  var prev = markers[previous];
+  if (prev) {
+      prev.setIcon(icon);
+      prev.setZIndexOffset(0);
+  }
+}
+
+$(document).ready(function() {
+    $('#fullpage').fullpage({
+      onLeave: nextSlide,
+    });
+});
+
+map.featureLayer.on('ready', function(e) {
+    var converter = new showdown.Converter();
+    $(".section").each(function(i, s) {
+      $(s).html( converter.makeHtml($(s).text()) );
+      var lon = $(s).data("lon");
+      var lat = $(s).data("lat");
+
+      if (lon && lat) {
+        var marker = L.marker(L.latLng(lat, lon));
+        marker.zoom = $(s).data("zoom");
+        marker.cv = converter.makeHtml($(s).data("cv"));
+        marker.on('click', function() { $.fn.fullpage.moveTo(i + 1); });
+        markers[i] = marker;
+      }
+    });
+});
+
+
+</script>
+</body>
+</html>
