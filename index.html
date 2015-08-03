@@ -58,6 +58,9 @@
 
   <div id='fullpage'>
       <div class='section'
+          data-lon='0.0'
+          data-lat='0.0'
+          data-zoom='2'
           data-cv=''
           >
 #Hallo!
@@ -87,7 +90,7 @@ More about me:
 
 **1984** (31 years old)
 
-Spanish is the language we speak at home
+Spanish is the language we speak at home.
       </div>
 
       <div class='section'
@@ -348,7 +351,7 @@ function nextSlide(index, nextIndex, direction) {
   show_markers(index - 1, nextIndex - 1);
 }
 
-var markers = []
+var markers = [];
 var icon = L.mapbox.marker.icon({
     'marker-color': '#b96'
     });
@@ -361,9 +364,11 @@ var hilight = L.mapbox.marker.icon({
 function show_markers(previous, index) {
   var marker = markers[index];
   if (marker) {
-      marker.setIcon(hilight)
+      marker.setIcon(hilight);
       marker.setZIndexOffset(1000);
-      marker.addTo(map);
+      if (index != 0) {
+          marker.addTo(map);
+      }
       map.setView(marker.getLatLng(), marker.zoom, { pan: {animate: true, duration: 1}, zoom:{animate: true}});
 
       $("#cv").html(marker.cv);
@@ -378,7 +383,7 @@ function show_markers(previous, index) {
 
 $(document).ready(function() {
     $('#fullpage').fullpage({
-      onLeave: nextSlide,
+      onLeave: nextSlide
     });
 });
 
