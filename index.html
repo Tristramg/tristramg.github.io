@@ -6,18 +6,18 @@
 <meta charset=utf-8 />
 <title>Tristram Gräbener</title>
 <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
-<script src='https://api.tiles.mapbox.com/mapbox.js/v2.2.1/mapbox.js'></script>
+<script src='https://api.mapbox.com/mapbox-gl-js/v2.0.0/mapbox-gl.js'></script>
+<link href='https://api.mapbox.com/mapbox-gl-js/v2.0.0/mapbox-gl.css' rel='stylesheet' />
 <script src='https://code.jquery.com/jquery-2.1.4.min.js'></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.6.7/jquery.fullPage.min.js'></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/showdown/1.2.1/showdown.min.js'></script>
-<link href='https://api.tiles.mapbox.com/mapbox.js/v2.2.1/mapbox.css' rel='stylesheet' />
 
 
 <style>
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,700);
   body {
     margin:0;
-    padding:0; 
+    padding:0;
     font-family: 'Open Sans', sans-serif;
   }
 
@@ -48,6 +48,7 @@
     padding: 20px;
     padding-left: 40px;
   }
+
 </style>
 </head>
 <body>
@@ -80,7 +81,7 @@ More about me:
       <div class='section'
         data-lon='-80.742269'
         data-lat='-1.345819'
-        data-zoom='4'
+        data-zoom='5'
         data-cv='
 ## Languages
 * Spanish: fluent'
@@ -97,7 +98,7 @@ Spanish is the language we speak at home.
       <div class='section'
         data-lon='9.237527'
         data-lat='48.746823'
-        data-zoom='4'
+        data-zoom='5'
         data-cv='
 ## Languages
 * Spanish: fluent
@@ -119,7 +120,7 @@ Do not worry, I have no _swäbisch_ accent.
       <div class='section'
         data-lon='2.4117'
         data-lat='6.3595'
-        data-zoom='4'
+        data-zoom='5'
         data-cv='
 ## Languages
 * Spanish: fluent
@@ -138,7 +139,7 @@ Learning French at 5 is way easier.
       <div class='section'
         data-lon='2.102712'
         data-lat='13.523439'
-        data-zoom='4'
+        data-zoom='5'
         data-anchor='niger'
         >
 #School
@@ -169,7 +170,7 @@ _Bacalauréat Scientifique_: A-level in Science with honnors (_mention bien_).
       <div class='section'
         data-lon='2.390725'
         data-lat='48.856219'
-        data-zoom='4'
+        data-zoom='5'
         data-anchor='prepa'
         >
 #Preparatory school
@@ -184,7 +185,7 @@ Mathematics and Physics
       <div class='section'
         data-lon='-1.520415'
         data-lat='47.282329'
-        data-zoom='4'
+        data-zoom='5'
         data-anchor='nantes'
         >
 #Engineering school
@@ -199,7 +200,7 @@ Major in Operation Research
       <div class='section'
         data-lon='12.583993'
         data-lat='55.67955'
-        data-zoom='4'
+        data-zoom='5'
         data-anchor='copenhagen'
         data-cv='
 ## Routing experience
@@ -229,7 +230,7 @@ My first actual experience with routing, and C++.
       <div class='section'
         data-lon='1.432417'
         data-lat='43.605248'
-        data-zoom='4'
+        data-zoom='5'
         data-cv='
 ## Routing experience
 
@@ -327,7 +328,7 @@ To fund my thesis, I also worked on a routing algorithm for firetrucks consideri
 
 ##Paris
 
-**2013 — present**
+**2013 — 2016**
 
 * Main developper of the routing engine in C++
   * Allows to compute train routes accross Europe
@@ -339,46 +340,33 @@ To fund my thesis, I also worked on a routing algorithm for firetrucks consideri
 
 <script>
 
-
-
-L.mapbox.accessToken = 'pk.eyJ1IjoidHJpc3RyYW1nIiwiYSI6IjU0NGQxM2U1NWE4NzRlOTMzMTg2ZTI3NTg1MTFhMzJiIn0.pG_d_9qYoqd9oYVlLroJyw';
-var map = L.mapbox.map('map', 'tristramg.mp9oc479')
-  .setView([0, 0], 2);
-
-map.scrollWheelZoom.disable();
-
+mapboxgl.accessToken = 'pk.eyJ1IjoidHJpc3RyYW1nIiwiYSI6ImNrajRjYzZ2aDN0MmgycHNja3Q3bHRscjcifQ.kHWa7auDqwFuttahroSrHg';
+  var map = new mapboxgl.Map({
+  container: 'map',
+  style: 'mapbox://styles/tristramg/cigukx6io0007c4m2kt9ehzvd', // stylesheet location
+  center: [0, 0], // starting position [lng, lat]
+  zoom: 0 // starting zoom
+});
+map.scrollZoom.disable();
 
 function nextSlide(index, nextIndex, direction) {
   show_markers(index - 1, nextIndex - 1);
 }
 
 var markers = [];
-var icon = L.mapbox.marker.icon({
-    'marker-color': '#b96'
-    });
-
-var hilight = L.mapbox.marker.icon({
-    'marker-size': 'large',
-    'marker-color': '#fa0'
-    });
 
 function show_markers(previous, index) {
   var marker = markers[index];
   if (marker) {
-      marker.setIcon(hilight);
-      marker.setZIndexOffset(1000);
       if (index != 0) {
           marker.addTo(map);
       }
-      map.setView(marker.getLatLng(), marker.zoom, { pan: {animate: true, duration: 1}, zoom:{animate: true}});
+      map.flyTo({
+        center: marker.getLngLat(),
+        zoom: marker.zoom
+      });
 
       $("#cv").html(marker.cv);
-  }
-
-  var prev = markers[previous];
-  if (prev) {
-      prev.setIcon(icon);
-      prev.setZIndexOffset(0);
   }
 }
 
@@ -388,21 +376,23 @@ $(document).ready(function() {
     });
 });
 
-map.featureLayer.on('ready', function(e) {
-    var converter = new showdown.Converter();
-    $(".section").each(function(i, s) {
-      $(s).html( converter.makeHtml($(s).text()) );
-      var lon = $(s).data("lon");
-      var lat = $(s).data("lat");
+map.on('load', function(e) {
+  const converter = new showdown.Converter();
+  $(".section").each(function(i, s) {
+    $(s).html( converter.makeHtml($(s).text()) );
+    var lon = $(s).data("lon");
+    var lat = $(s).data("lat");
 
-      if (lon && lat) {
-        var marker = L.marker(L.latLng(lat, lon));
-        marker.zoom = $(s).data("zoom");
-        marker.cv = converter.makeHtml($(s).data("cv"));
-        marker.on('click', function() { $.fn.fullpage.moveTo(i + 1); });
-        markers[i] = marker;
-      }
-    });
+    if (lon && lat) {
+      var marker = new mapboxgl.Marker();
+      marker.setLngLat([lon, lat])
+      marker.addTo(map);
+      marker.zoom = $(s).data("zoom");
+      marker.cv = converter.makeHtml($(s).data("cv"));
+      marker.on('click', function() { $.fn.fullpage.moveTo(i + 1); });
+      markers[i] = marker;
+    }
+  });
 });
 
 
